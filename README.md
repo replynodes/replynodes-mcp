@@ -1,5 +1,8 @@
 # @replynodes/mcp
 
+[![npm version](https://img.shields.io/npm/v/@replynodes/mcp.svg)](https://www.npmjs.com/package/@replynodes/mcp)
+[![License: MIT](https://img.shields.io/npm/l/@replynodes/mcp.svg)](https://github.com/replynodes/replynodes-mcp/blob/master/LICENSE)
+
 Connect Claude, Cursor, Codex, OpenClaw, or any other [Model Context
 Protocol](https://modelcontextprotocol.io) client to your
 [Replynodes](https://replynodes.com) account, so your AI agent can list your
