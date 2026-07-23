@@ -1,0 +1,40 @@
+{
+  "name": "@replynodes/mcp",
+  "version": "0.1.0",
+  "description": "Connect AI agents (Claude, Cursor, Codex, OpenClaw, etc.) to Replynodes over the Model Context Protocol.",
+  "type": "module",
+  "bin": {
+    "replynodes-mcp": "bin/cli.js"
+  },
+  "files": [
+    "bin"
+  ],
+  "license": "MIT",
+  "author": "Replynodes",
+  "homepage": "https://replynodes.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/replynodes/replynodes-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/replynodes/replynodes-mcp/issues"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "replynodes",
+    "social-media",
+    "ai-agent",
+    "claude",
+    "llm-tools"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "mcp-remote": "^0.1.38"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
