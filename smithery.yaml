@@ -1,0 +1,12 @@
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    required:
+      - apiKey
+    properties:
+      apiKey:
+        type: string
+        description: Your Replynodes API key (from Settings → API Keys in app.replynodes.com)
+  commandFunction: |
+    config => ({ command: 'npx', args: ['-y', '@replynodes/mcp'], env: { REPLYNODES_API_KEY: config.apiKey } })
