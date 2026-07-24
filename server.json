@@ -1,0 +1,35 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.replynodes/mcp",
+  "description": "Connect AI agents to Replynodes over the Model Context Protocol.",
+  "repository": {
+    "url": "https://github.com/replynodes/replynodes-mcp",
+    "source": "github"
+  },
+  "version": "0.1.2",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@replynodes/mcp",
+      "version": "0.1.2",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "description": "Replynodes API key (Settings → API Keys in app.replynodes.com)",
+          "isRequired": true,
+          "format": "string",
+          "isSecret": true,
+          "name": "REPLYNODES_API_KEY"
+        }
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://app.replynodes.com/api/mcp"
+    }
+  ]
+}
