@@ -30,9 +30,16 @@ at all — see [Native remote MCP](#native-remote-mcp-no-install) below.
 
 ### Claude Code (as a plugin)
 
-This repo is also installable as a Claude Code plugin directly from GitHub
-(`https://github.com/replynodes/replynodes-mcp`). You'll be prompted for your
-Replynodes API key; Claude Code stores it and starts the MCP server for you.
+This repo is also a Claude Code plugin marketplace, so you can install it
+with:
+
+```
+/plugin marketplace add replynodes/replynodes-mcp
+/plugin install replynodes-mcp@replynodes-mcp
+```
+
+You'll be prompted for your Replynodes API key; Claude Code stores it and
+starts the MCP server for you.
 
 ### Claude Desktop / Claude Code (manual MCP config)
 
