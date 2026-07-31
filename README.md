@@ -132,6 +132,15 @@ as a Bearer token sent directly to `app.replynodes.com` — this package does
 not transmit it anywhere else. Treat it like a password; rotate it in
 **Settings → API Keys** if it leaks.
 
+## Related
+
+Looking for the agent side of this — skills that draft, review, and prepare
+content before it reaches `schedulePostTool`? See
+[Awesome Social Media Skills](https://github.com/replynodes/awesome-social-media-skills),
+an open-source library of portable AI agent skills for social content, with
+a [quickstart](https://github.com/replynodes/awesome-social-media-skills/blob/main/docs/mcp-quickstart.md)
+showing how the two fit together.
+
 ## License
 
 MIT
