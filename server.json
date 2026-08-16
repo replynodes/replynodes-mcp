@@ -17,7 +17,7 @@
       },
       "environmentVariables": [
         {
-          "description": "Replynodes API key (Settings → API Keys in app.replynodes.com)",
+          "description": "ReplyNodes API key (app.replynodes.com → Developers → API Keys & Agents)",
           "isRequired": true,
           "format": "string",
           "isSecret": true,

@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/@replynodes/mcp.svg)](https://www.npmjs.com/package/@replynodes/mcp)
 [![License: MIT](https://img.shields.io/npm/l/@replynodes/mcp.svg)](https://github.com/replynodes/replynodes-mcp/blob/master/LICENSE)
 
-Connect Claude, Cursor, Codex, OpenClaw, or any other [Model Context
+Connect Claude, Cursor, Codex, OpenClaw, Hermes, or any other [Model Context
 Protocol](https://modelcontextprotocol.io) client to your
 [Replynodes](https://replynodes.com) account, so your AI agent can list your
 social channels, schedule posts, generate images/video for posts, and manage
@@ -23,7 +23,7 @@ at all — see [Native remote MCP](#native-remote-mcp-no-install) below.
 ## Get an API key
 
 1. Log in to [app.replynodes.com](https://app.replynodes.com).
-2. Go to **Settings → API Keys** and create a key.
+2. Go to **Developers → API Keys & Agents** (app.replynodes.com/developers) and create a key.
 3. Keep it secret — it grants full access to your Replynodes organization.
 
 ## Setup
@@ -108,7 +108,13 @@ discovery instead of static API keys.
 | `integrationList` | List connected social integrations (channels), optionally scoped to a group |
 | `integrationSchema` | Get the schema/required fields for scheduling a post to a given integration |
 | `triggerTool` | Trigger an integration action once you have the ids/fields it needs |
-| `schedulePostTool` | Schedule a post to one or more integrations |
+| `integrationSchedulePostTool` (a.k.a. `schedulePostTool`) | Schedule a post to one or more integrations |
+| `postsList` | List posts for the current organization, most recent first |
+| `postsUpdate` | Edit an existing post in place |
+| `postAnalytics` | Read performance for a published post |
+| `ask_replynodes` | Ask the ReplyNodes agent a question |
+| `draftPostFromSource` | Turn a public URL or pasted source into a sourced brief and draft |
+| `planFounderDistributionAngles` | Create a normalized brief and three distribution angles |
 | `generateImageTool` | Generate an image to attach to a post |
 | `generateVideoTool` / `generateVideoOptions` / `videoFunctionTool` | Generate video content and resolve provider-specific options |
 | `uploadFromUrlTool` | Upload a remote image/video into the media library from a public URL |
@@ -130,12 +136,12 @@ Any extra CLI arguments passed to `replynodes-mcp` are forwarded to
 Your API key grants access to your Replynodes organization. It is only used
 as a Bearer token sent directly to `app.replynodes.com` — this package does
 not transmit it anywhere else. Treat it like a password; rotate it in
-**Settings → API Keys** if it leaks.
+**Developers → API Keys & Agents** (app.replynodes.com/developers) if it leaks.
 
 ## Related
 
 Looking for the agent side of this — skills that draft, review, and prepare
-content before it reaches `schedulePostTool`? See
+content before it reaches `integrationSchedulePostTool` (a.k.a. `schedulePostTool`)? See
 [Awesome Social Media Skills](https://github.com/replynodes/awesome-social-media-skills),
 an open-source library of portable AI agent skills for social content, with
 a [quickstart](https://github.com/replynodes/awesome-social-media-skills/blob/main/docs/mcp-quickstart.md)
