@@ -24,7 +24,7 @@
     "api_key": {
       "type": "string",
       "title": "Replynodes API Key",
-      "description": "Create one at app.replynodes.com → Settings → API Keys",
+      "description": "Create one at app.replynodes.com → Developers → API Keys & Agents",
       "sensitive": true,
       "required": true
     }
