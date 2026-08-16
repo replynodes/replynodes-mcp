@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/@replynodes/mcp.svg)](https://www.npmjs.com/package/@replynodes/mcp)
 [![License: MIT](https://img.shields.io/npm/l/@replynodes/mcp.svg)](https://github.com/replynodes/replynodes-mcp/blob/master/LICENSE)
 
-Connect Claude, Cursor, Codex, OpenClaw, or any other [Model Context
+Connect Claude, Cursor, Codex, OpenClaw, Hermes, ChatGPT, or any other [Model Context
 Protocol](https://modelcontextprotocol.io) client to your
 [Replynodes](https://replynodes.com) account, so your AI agent can list your
 social channels, schedule posts, generate images/video for posts, and manage
@@ -23,7 +23,7 @@ at all — see [Native remote MCP](#native-remote-mcp-no-install) below.
 ## Get an API key
 
 1. Log in to [app.replynodes.com](https://app.replynodes.com).
-2. Go to **Settings → API Keys** and create a key.
+2. Go to **Developers → API Keys & Agents** (app.replynodes.com/developers) and create a key.
 3. Keep it secret — it grants full access to your Replynodes organization.
 
 ## Setup
@@ -130,7 +130,7 @@ Any extra CLI arguments passed to `replynodes-mcp` are forwarded to
 Your API key grants access to your Replynodes organization. It is only used
 as a Bearer token sent directly to `app.replynodes.com` — this package does
 not transmit it anywhere else. Treat it like a password; rotate it in
-**Settings → API Keys** if it leaks.
+**Developers → API Keys & Agents** (app.replynodes.com/developers) if it leaks.
 
 ## Related
 
