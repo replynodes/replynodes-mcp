@@ -1,7 +1,7 @@
 {
   "name": "replynodes-mcp",
   "displayName": "Replynodes",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Connect Claude to your Replynodes account over MCP — list social channels, schedule posts, and generate images/video for posts.",
   "author": {
     "name": "Replynodes",

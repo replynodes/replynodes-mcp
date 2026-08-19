@@ -7,6 +7,6 @@ startCommand:
     properties:
       apiKey:
         type: string
-        description: Your Replynodes API key (from Settings → API Keys in app.replynodes.com)
+        description: Your Replynodes API key (create it at app.replynodes.com → Developers → API Keys & Agents)
   commandFunction: |
     config => ({ command: 'npx', args: ['-y', '@replynodes/mcp'], env: { REPLYNODES_API_KEY: config.apiKey } })

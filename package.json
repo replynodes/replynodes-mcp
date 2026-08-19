@@ -1,6 +1,6 @@
 {
   "name": "@replynodes/mcp",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "mcpName": "io.github.replynodes/mcp",
   "description": "Connect AI agents (Claude, Cursor, Codex, OpenClaw, Hermes, etc.) to Replynodes over the Model Context Protocol.",
   "type": "module",
