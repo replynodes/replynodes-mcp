@@ -4,8 +4,7 @@ import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);
 
-const DEFAULT_URL = 'https://app.replynodes.com/api/mcp';
-
+const DEFAULT_URL = 'https://api.replynodes.com/mcp';
 const apiKey = process.env.REPLYNODES_API_KEY;
 
 if (!apiKey) {
@@ -13,16 +12,28 @@ if (!apiKey) {
     [
       '[replynodes-mcp] Missing REPLYNODES_API_KEY.',
       '',
-      'Create an API key at https://app.replynodes.com (Settings -> API Keys),',
-      'then set it as the REPLYNODES_API_KEY environment variable for this command.',
+      'Claim access at https://replynodes.com/auth.md,',
+      'then set the returned credential as REPLYNODES_API_KEY for this command.',
     ].join('\n')
   );
   process.exit(1);
 }
 
 const url = process.env.REPLYNODES_MCP_URL || DEFAULT_URL;
-const proxyEntry = require.resolve('mcp-remote/dist/proxy.js');
+let parsedUrl;
+try {
+  parsedUrl = new URL(url);
+} catch {
+  console.error('[replynodes-mcp] REPLYNODES_MCP_URL must be a valid HTTPS URL.');
+  process.exit(1);
+}
 
+if (parsedUrl.protocol !== 'https:') {
+  console.error('[replynodes-mcp] REPLYNODES_MCP_URL must use HTTPS.');
+  process.exit(1);
+}
+
+const proxyEntry = require.resolve('mcp-remote/dist/proxy.js');
 const args = [
   proxyEntry,
   url,

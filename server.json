@@ -17,7 +17,7 @@
       },
       "environmentVariables": [
         {
-          "description": "ReplyNodes API key (app.replynodes.com → Developers → API Keys & Agents)",
+          "description": "ReplyNodes credential claimed through https://replynodes.com/auth.md",
           "isRequired": true,
           "format": "string",
           "isSecret": true,
@@ -29,7 +29,7 @@
   "remotes": [
     {
       "type": "streamable-http",
-      "url": "https://app.replynodes.com/api/mcp"
+      "url": "https://api.replynodes.com/mcp"
     }
   ]
 }

@@ -2,7 +2,7 @@
   "name": "replynodes-mcp",
   "displayName": "Replynodes",
   "version": "0.1.3",
-  "description": "Connect Claude to your Replynodes account over MCP — list social channels, schedule posts, and generate images/video for posts.",
+  "description": "Connect Claude to ReplyNodes' public, read-only data over MCP.",
   "author": {
     "name": "Replynodes",
     "url": "https://replynodes.com"
@@ -23,8 +23,8 @@
   "userConfig": {
     "api_key": {
       "type": "string",
-      "title": "Replynodes API Key",
-      "description": "Create one at app.replynodes.com → Developers → API Keys & Agents",
+      "title": "ReplyNodes credential",
+      "description": "Claim one at https://replynodes.com/auth.md",
       "sensitive": true,
       "required": true
     }
