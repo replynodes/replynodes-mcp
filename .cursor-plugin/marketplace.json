@@ -1,0 +1,27 @@
+{
+  "name": "replynodes",
+  "displayName": "ReplyNodes MCP",
+  "description": "Read-only MCP server for web search, scraping, crawling, Reddit, YouTube, App Store, Hacker News, and brand intelligence.",
+  "version": "0.1.4",
+  "publisher": "replynodes",
+  "categories": [
+    "developer-tools",
+    "data-and-analytics"
+  ],
+  "tags": [
+    "mcp",
+    "web-search",
+    "scraping",
+    "crawl",
+    "reddit",
+    "youtube",
+    "app-store",
+    "hacker-news",
+    "brand-intelligence",
+    "read-only"
+  ],
+  "repository": "https://github.com/replynodes/replynodes-mcp",
+  "homepage": "https://replynodes.com/mcp",
+  "documentation": "https://github.com/replynodes/replynodes-mcp/blob/main/README.md",
+  "icon": "assets/logo.svg"
+}
