@@ -2,7 +2,7 @@
   "name": "@replynodes/mcp",
   "version": "0.1.3",
   "mcpName": "io.github.replynodes/mcp",
-  "description": "Connect AI agents (Claude, Cursor, Codex, OpenClaw, Hermes, etc.) to Replynodes over the Model Context Protocol.",
+  "description": "MCP connector for ReplyNodes — read-only web search, scraping, crawling, Reddit, YouTube, App Store, Google Play, Hacker News, and brand intelligence for AI agents via one MCP endpoint.",
   "type": "module",
   "bin": {
     "replynodes-mcp": "bin/cli.js"
@@ -23,11 +23,31 @@
   "keywords": [
     "mcp",
     "model-context-protocol",
-    "replynodes",
-    "social-media",
     "ai-agent",
+    "llm-tools",
+    "web-search",
+    "web-scraping",
+    "web-crawler",
+    "web-crawl",
+    "reddit",
+    "youtube",
+    "app-store",
+    "google-play",
+    "hacker-news",
+    "brand-intelligence",
+    "brand-search",
+    "brand-styleguide",
+    "brand-fonts",
+    "website-mapping",
+    "url-scraper",
+    "read-only",
+    "mcp-server",
+    "mcp-client",
     "claude",
-    "llm-tools"
+    "cursor",
+    "codex",
+    "openclaw",
+    "replynodes"
   ],
   "engines": {
     "node": ">=18"

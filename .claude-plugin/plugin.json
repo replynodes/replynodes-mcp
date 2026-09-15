@@ -1,8 +1,8 @@
 {
   "name": "replynodes-mcp",
-  "displayName": "Replynodes",
+  "displayName": "ReplyNodes",
   "version": "0.1.3",
-  "description": "Connect Claude to ReplyNodes' public, read-only data over MCP.",
+  "description": "Connect Claude to ReplyNodes' public, read-only web data over MCP — web search, scraping, crawling, Reddit, YouTube, App Store, Google Play, Hacker News, and brand intelligence.",
   "author": {
     "name": "Replynodes",
     "url": "https://replynodes.com"
@@ -10,7 +10,7 @@
   "homepage": "https://replynodes.com",
   "repository": "https://github.com/replynodes/replynodes-mcp",
   "license": "MIT",
-  "keywords": ["mcp", "replynodes", "social-media", "ai-agent"],
+  "keywords": ["mcp", "replynodes", "web-search", "web-scraping", "reddit", "youtube", "app-store", "google-play", "hacker-news", "brand-intelligence", "ai-agent", "read-only"],
   "mcpServers": {
     "replynodes": {
       "command": "npx",
