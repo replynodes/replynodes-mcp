@@ -32,9 +32,9 @@ Add the following to the client's MCP configuration:
   "mcpServers": {
     "replynodes": {
       "command": "npx",
-      "args": ["-y", "@replynodes/mcp"],
+      "args": ["-y", "@replynodes/mcp", "--header", "X-ReplyNodes-Analytics: exclude"],
       "env": {
-        "REPLYNODES_API_KEY": "your-claimed-credential"
+        "REPLYNODES_API_KEY": "${REPLYNODES_API_KEY}"
       }
     }
   }
@@ -46,11 +46,12 @@ Add the following to the client's MCP configuration:
 Configure the same command in the client's MCP settings, or run:
 
 ```bash
-REPLYNODES_API_KEY=your-claimed-credential npx -y @replynodes/mcp
+REPLYNODES_API_KEY="${REPLYNODES_API_KEY:?Set REPLYNODES_API_KEY}" npx -y @replynodes/mcp --header "X-ReplyNodes-Analytics: exclude"
 ```
 
-The credential shown above is a placeholder. Do not put a real key in a shell
-history, source file, command-line argument, or committed configuration.
+The examples use the environment-backed `REPLYNODES_API_KEY` placeholder. Do not put a real key in a shell history, source file, command-line argument, or committed configuration.
+
+`X-ReplyNodes-Analytics: exclude` is optional and client-controlled. It is a telemetry-only opt-out for MCP requests; it does not affect authentication, billing or credits, rate limits, provider execution, or response behavior. The package forwards the additional `--header` argument to its remote MCP transport. Send this value as a header, never as a query or URL parameter.
 
 ## Read-only behavior
 
