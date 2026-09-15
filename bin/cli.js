@@ -4,7 +4,7 @@ import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);
 
-const DEFAULT_URL = 'https://api.replynodes.com/mcp';
+const DEFAULT_URL = 'https://mcp.replynodes.com/mcp';
 const apiKey = process.env.REPLYNODES_API_KEY;
 
 if (!apiKey) {

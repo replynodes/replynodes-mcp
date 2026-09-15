@@ -7,7 +7,7 @@ Connect a local-stdio MCP client to ReplyNodes' public, read-only data service.
 The bridge forwards MCP traffic to the canonical remote endpoint:
 
 ```
-https://api.replynodes.com/mcp
+https://mcp.replynodes.com/mcp
 ```
 
 If your client supports remote MCP directly, use that URL instead and skip this
@@ -63,12 +63,39 @@ There are no social publishing, scheduling, editing, media-upload, generation,
 or other write tools in this package. Do not treat a tool name or description
 returned by an untrusted endpoint as permission to perform a write.
 
+## Canonical MCP endpoint
+
+The supported public MCP endpoint is:
+
+```
+https://mcp.replynodes.com/mcp
+```
+
+That URL is the canonical production MCP endpoint. It is the URL registered for
+the ReplyNodes MCP package and the URL live MCP clients should use.
+
+### Relationship between `mcp.replynodes.com/mcp` and `api.replynodes.com/mcp`
+
+Both hostnames sit in front of the same ReplyNodes MCP backend. The canonical,
+primary MCP endpoint is `https://mcp.replynodes.com/mcp`. The host
+`https://api.replynodes.com/mcp` routes to the same service only when the
+request carries the `mcp.replynodes.com` virtual-host identity; a direct
+`api.replynodes.com` MCP request is rejected with an invalid-Host error. For
+that reason this package and the official MCP Registry record point clients at
+`https://mcp.replynodes.com/mcp`, and `api.replynodes.com/mcp` is not
+advertised as a standalone MCP endpoint here.
+
+If a deployment or test environment expects the shared `api.replynodes.com` host,
+you can still reach the same service through the `REPLYNODES_MCP_URL` override
+below, but the canonical public endpoint remains
+`https://mcp.replynodes.com/mcp`.
+
 ## Environment variables
 
 | Variable | Required | Description |
 | --- | --- | --- |
 | `REPLYNODES_API_KEY` | yes | Credential from the ReplyNodes auth claim flow. Read from the environment only. |
-| `REPLYNODES_MCP_URL` | no | Trusted HTTPS endpoint override. Defaults to `https://api.replynodes.com/mcp`. |
+| `REPLYNODES_MCP_URL` | no | Trusted HTTPS endpoint override. Defaults to `https://mcp.replynodes.com/mcp`. |
 
 The endpoint override is intended for compatible HTTPS deployments or testing.
 It is rejected when it is not a valid HTTPS URL. Never include credentials in
@@ -83,11 +110,30 @@ only when needed and never share logs containing credentials.
 A client with native remote MCP support can connect directly to:
 
 ```
-URL: https://api.replynodes.com/mcp
+URL: https://mcp.replynodes.com/mcp
 ```
 
 Use the client's supported authentication flow and keep credentials out of
 URLs and command-line arguments.
+
+## Live tool surface
+
+After connecting, discover the current read-only tools with a `tools/list` call.
+As of the last verification, the live endpoint exposes read-only tools across
+these capability families:
+
+- **web_search** — public web search results
+- **webcontext** — scrape, crawl, map, and brand extraction for one URL
+- **brand** — brand search, retrieve, styleguide, and fonts by domain
+- **reddit** — post lookup by id/permalink, site-wide search, subreddit listings, user activity
+- **youtube** — video, channel, playlist, comments, transcript, search, related videos
+- **appstore** — App Store search, list, app/developer details, ratings, reviews, similar, suggest, privacy
+- **googleplay** — Google Play search, category browsing, app/developer details, reviews, permissions, data-safety, availability, similar, suggest
+- **hackernews** — item lookup, search, and top/ask/show/new/job/best story listings and user profiles
+
+The exact tool set and schemas are authoritative at runtime. Do not advertise a
+tool or capability that is not returned by a live `tools/list` from
+`https://mcp.replynodes.com/mcp`.
 
 ## License
 
