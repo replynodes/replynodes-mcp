@@ -9,7 +9,7 @@
     {
       "name": "replynodes-mcp",
       "source": "./",
-      "description": "Connect Claude to your Replynodes account over MCP — list social channels, schedule posts, and generate images/video for posts."
+      "description": "Connect Claude to ReplyNodes' public, read-only data over MCP."
     }
   ]
 }
