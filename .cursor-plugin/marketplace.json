@@ -21,7 +21,7 @@
     "read-only"
   ],
   "repository": "https://github.com/replynodes/replynodes-mcp",
-  "homepage": "https://replynodes.com/mcp",
-  "documentation": "https://github.com/replynodes/replynodes-mcp/blob/main/README.md",
+  "homepage": "https://replynodes.com",
+  "documentation": "https://github.com/replynodes/replynodes-mcp/blob/master/README.md",
   "icon": "assets/logo.svg"
 }

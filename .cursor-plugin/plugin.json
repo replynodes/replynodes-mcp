@@ -20,9 +20,9 @@
     "brand-intelligence",
     "read-only"
   ],
-  "documentationUrl": "https://github.com/replynodes/replynodes-mcp/blob/main/README.md",
+  "documentationUrl": "https://github.com/replynodes/replynodes-mcp/blob/master/README.md",
   "repositoryUrl": "https://github.com/replynodes/replynodes-mcp",
-  "homepageUrl": "https://replynodes.com/mcp",
+  "homepageUrl": "https://replynodes.com",
   "components": {
     "mcpServers": {
       "variables": [
