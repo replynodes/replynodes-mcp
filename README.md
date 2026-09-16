@@ -169,9 +169,9 @@ Set `REPLYNODES_API_KEY` in your environment. Claim a credential at
 A Cursor plugin that wraps the same remote MCP server lives in `.cursor-plugin/`
 in this repository:
 
-- plugin manifest: <https://github.com/replynodes/replynodes-mcp/blob/main/.cursor-plugin/plugin.json>
-- marketplace manifest: <https://github.com/replynodes/replynodes-mcp/blob/main/.cursor-plugin/marketplace.json>
-- logo: <https://github.com/replynodes/replynodes-mcp/blob/main/assets/logo.svg>
+- plugin manifest: <https://github.com/replynodes/replynodes-mcp/blob/master/.cursor-plugin/plugin.json>
+- marketplace manifest: <https://github.com/replynodes/replynodes-mcp/blob/master/.cursor-plugin/marketplace.json>
+- logo: <https://github.com/replynodes/replynodes-mcp/blob/master/assets/logo.svg>
 
 The plugin uses the canonical production endpoint `https://mcp.replynodes.com/mcp`
 and authenticates with a `Bearer` `REPLYNODES_API_KEY` header, with the key
@@ -218,10 +218,10 @@ plugins must be open source and are manually reviewed before listing
 | --- | --- | --- |
 | Official MCP Registry | Live listing | <https://registry.modelcontextprotocol.io/v0.1/servers/com.replynodes%2Fmcp/versions/latest> |
 | Smithery | Live listing | <https://smithery.ai/server/@replynodes/mcp> |
-| Cursor plugin (in this repo) | Submit-ready | <https://github.com/replynodes/replynodes-mcp/tree/main/.cursor-plugin> |
+| Cursor plugin (in this repo) | Submit-ready | <https://github.com/replynodes/replynodes-mcp/tree/master/.cursor-plugin> |
 | Cursor deeplink | Verified install path | `cursor://anysphere.cursor-deeplink/mcp/install?name=replynodes&config=eyJtY3BTZXJ2ZXJzIjp7InJlcGx5bm9kZXMiOnsidXJsIjoiaHR0cHM6Ly9tY3AucmVwbHlub2Rlcy5jb20vbWNwIiwiaGVhZGVycyI6eyJBdXRob3JpemF0aW9uIjoiQmVhcmVyICR7UkVQTFlOT0RFU19BUElfS0VZfSJ9fX19` |
 | Cursor Marketplace listing | Not listed yet | submit at <https://cursor.com/marketplace/publish> (owner action) |
-| Claude Code plugin (in this repo) | Existing, uses stdio bridge | <https://github.com/replynodes/replynodes-mcp/tree/main/.claude-plugin> |
+| Claude Code plugin (in this repo) | Existing, uses stdio bridge | <https://github.com/replynodes/replynodes-mcp/tree/master/.claude-plugin> |
 | Claude Code community marketplace | Submit path is owner-gated | <https://code.claude.com/docs/en/plugins.md> |
 
 ## License
