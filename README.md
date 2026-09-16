@@ -189,7 +189,7 @@ cursor://anysphere.cursor-deeplink/mcp/install?name=$NAME&config=$BASE64_ENCODED
 The ReplyNodes deeplink (remote HTTP MCP, Bearer API key) is:
 
 ```
-cursor://anysphere.cursor-deeplink/mcp/install?name=replynodes&config=eyJtY3BTZXJ2ZXJzIjp7InJlcGx5bm9kZXMiOnsidXJsIjoiaHR0cHM6Ly9tY3AucmVwbHlub2Rlcy5jb20vbWNwIiwiaGVhZGVycyI6eyJBdXRob3JpemF0aW9uIjoiQmVhcmVyICR7UkVQTFlOT0RFU19BUElfS0VZfSJ9fX19
+cursor://anysphere.cursor-deeplink/mcp/install?name=replynodes&config=eyJtY3BTZXJ2ZXJzIjp7InJlcGx5bm9kZXMiOnsiaGVhZGVycyI6eyJBdXRob3JpemF0aW9uIjoiQmVhcmVyICR7UkVQTFlOT0RFU19BUElfS0VZfSJ9LCJ1cmwiOiJodHRwczovL21jcC5yZXBseW5vZGVzLmNvbS9tY3AifX19
 ```
 
 Recompute and test your own deeplink from the Cursor docs at
@@ -219,7 +219,7 @@ plugins must be open source and are manually reviewed before listing
 | Official MCP Registry | Live listing | <https://registry.modelcontextprotocol.io/v0.1/servers/com.replynodes%2Fmcp/versions/latest> |
 | Smithery | Live listing | <https://smithery.ai/server/@replynodes/mcp> |
 | Cursor plugin (in this repo) | Submit-ready | <https://github.com/replynodes/replynodes-mcp/tree/master/.cursor-plugin> |
-| Cursor deeplink | Verified install path | `cursor://anysphere.cursor-deeplink/mcp/install?name=replynodes&config=eyJtY3BTZXJ2ZXJzIjp7InJlcGx5bm9kZXMiOnsidXJsIjoiaHR0cHM6Ly9tY3AucmVwbHlub2Rlcy5jb20vbWNwIiwiaGVhZGVycyI6eyJBdXRob3JpemF0aW9uIjoiQmVhcmVyICR7UkVQTFlOT0RFU19BUElfS0VZfSJ9fX19` |
+| Cursor deeplink | Verified install path | `cursor://anysphere.cursor-deeplink/mcp/install?name=replynodes&config=eyJtY3BTZXJ2ZXJzIjp7InJlcGx5bm9kZXMiOnsiaGVhZGVycyI6eyJBdXRob3JpemF0aW9uIjoiQmVhcmVyICR7UkVQTFlOT0RFU19BUElfS0VZfSJ9LCJ1cmwiOiJodHRwczovL21jcC5yZXBseW5vZGVzLmNvbS9tY3AifX19` |
 | Cursor Marketplace listing | Not listed yet | submit at <https://cursor.com/marketplace/publish> (owner action) |
 | Claude Code plugin (in this repo) | Existing, uses stdio bridge | <https://github.com/replynodes/replynodes-mcp/tree/master/.claude-plugin> |
 | Claude Code community marketplace | Submit path is owner-gated | <https://code.claude.com/docs/en/plugins.md> |
