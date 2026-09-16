@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "replynodes": {
+      "url": "https://mcp.replynodes.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${REPLYNODES_API_KEY}"
+      }
+    }
+  }
+}

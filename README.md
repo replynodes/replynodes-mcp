@@ -135,6 +135,95 @@ The exact tool set and schemas are authoritative at runtime. Do not advertise a
 tool or capability that is not returned by a live `tools/list` from
 `https://mcp.replynodes.com/mcp`.
 
+## Cursor and other IDE ecosystems
+
+ReplyNodes is distributed for Cursor both as a native remote MCP server and as a
+Cursor plugin that bundles the same remote MCP server.
+
+### Native remote MCP (no plugin)
+
+Cursor supports remote MCP servers in `mcp.json` using a `url` plus optional
+`headers`. Add ReplyNodes to `.cursor/mcp.json` (project) or `~/.cursor/mcp.json`
+(global):
+
+```json
+{
+  "mcpServers": {
+    "replynodes": {
+      "url": "https://mcp.replynodes.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${REPLYNODES_API_KEY}"
+      }
+    }
+  }
+}
+```
+
+Set `REPLYNODES_API_KEY` in your environment. Claim a credential at
+<https://replynodes.com/auth.md>. See Cursor's MCP docs at
+<https://cursor.com/docs/mcp> and the manual install help at
+<https://cursor.com/help/customization/mcp>.
+
+### Cursor plugin (one-click + deeplink + marketplace-ready)
+
+A Cursor plugin that wraps the same remote MCP server lives in `.cursor-plugin/`
+in this repository:
+
+- plugin manifest: <https://github.com/replynodes/replynodes-mcp/blob/master/.cursor-plugin/plugin.json>
+- marketplace manifest: <https://github.com/replynodes/replynodes-mcp/blob/master/.cursor-plugin/marketplace.json>
+- logo: <https://github.com/replynodes/replynodes-mcp/blob/master/assets/logo.svg>
+
+The plugin uses the canonical production endpoint `https://mcp.replynodes.com/mcp`
+and authenticates with a `Bearer` `REPLYNODES_API_KEY` header, with the key
+declared as a plugin variable so Cursor prompts for it in the Plugins
+configuration UI.
+
+#### Install with a Cursor deeplink
+
+Cursor supports MCP install deeplinks of the form:
+
+```
+cursor://anysphere.cursor-deeplink/mcp/install?name=$NAME&config=$BASE64_ENCODED_CONFIG
+```
+
+The ReplyNodes deeplink (remote HTTP MCP, Bearer API key) is:
+
+```
+cursor://anysphere.cursor-deeplink/mcp/install?name=replynodes&config=eyJtY3BTZXJ2ZXJzIjp7InJlcGx5bm9kZXMiOnsiaGVhZGVycyI6eyJBdXRob3JpemF0aW9uIjoiQmVhcmVyICR7UkVQTFlOT0RFU19BUElfS0VZfSJ9LCJ1cmwiOiJodHRwczovL21jcC5yZXBseW5vZGVzLmNvbS9tY3AifX19
+```
+
+Recompute and test your own deeplink from the Cursor docs at
+<https://cursor.com/docs/mcp/install-links>.
+
+#### Submit to the Cursor Marketplace
+
+The plugin is submit-ready. To list it on the public Cursor Marketplace:
+
+1. Confirm the plugin is on a public Git branch of
+   <https://github.com/replynodes/replynodes-mcp>.
+2. Sign in at <https://cursor.com/marketplace/publish>.
+3. Submit the repository URL.
+
+Submission checklist (from <https://cursor.com/docs/reference/plugins>): valid
+`.cursor-plugin/plugin.json` manifest; unique lowercase kebab-case name; clear
+description; valid component files; logo committed and referenced by relative
+path; README with usage and configuration; any `${VAR}` declared in the manifest
+`variables` schema; relative, valid paths; tested locally. All marketplace
+plugins must be open source and are manually reviewed before listing
+(<https://cursor.com/help/security-and-privacy/marketplace-security>).
+
+### Distribution state
+
+| Channel | State | URL |
+| --- | --- | --- |
+| Official MCP Registry | Live listing | <https://registry.modelcontextprotocol.io/v0.1/servers/com.replynodes%2Fmcp/versions/latest> |
+| Smithery | Live listing | <https://smithery.ai/server/@replynodes/mcp> |
+| Cursor plugin (in this repo) | Submit-ready | <https://github.com/replynodes/replynodes-mcp/tree/master/.cursor-plugin> |
+| Cursor deeplink | Verified install path | `cursor://anysphere.cursor-deeplink/mcp/install?name=replynodes&config=eyJtY3BTZXJ2ZXJzIjp7InJlcGx5bm9kZXMiOnsiaGVhZGVycyI6eyJBdXRob3JpemF0aW9uIjoiQmVhcmVyICR7UkVQTFlOT0RFU19BUElfS0VZfSJ9LCJ1cmwiOiJodHRwczovL21jcC5yZXBseW5vZGVzLmNvbS9tY3AifX19` |
+| Cursor Marketplace listing | Not listed yet | submit at <https://cursor.com/marketplace/publish> (owner action) |
+| Claude Code plugin (in this repo) | Existing, uses stdio bridge | <https://github.com/replynodes/replynodes-mcp/tree/master/.claude-plugin> |
+| Claude Code community marketplace | Submit path is owner-gated | <https://code.claude.com/docs/en/plugins.md> |
+
 ## License
 
 MIT
