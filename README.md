@@ -170,7 +170,6 @@ A Cursor plugin that wraps the same remote MCP server lives in `.cursor-plugin/`
 in this repository:
 
 - plugin manifest: <https://github.com/replynodes/replynodes-mcp/blob/master/.cursor-plugin/plugin.json>
-- marketplace manifest: <https://github.com/replynodes/replynodes-mcp/blob/master/.cursor-plugin/marketplace.json>
 - logo: <https://github.com/replynodes/replynodes-mcp/blob/master/assets/logo.svg>
 
 The plugin uses the canonical production endpoint `https://mcp.replynodes.com/mcp`
