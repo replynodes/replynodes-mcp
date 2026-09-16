@@ -4,10 +4,7 @@
   "description": "Read-only web search, scraping, crawling, Reddit, YouTube, App Store, Hacker News, and brand-intelligence MCP server for Cursor. Connect to the canonical public endpoint, authenticate with your claimed API key, and call tools via Cursor's Tools panel.",
   "readme": "README.md",
   "icon": "assets/logo.svg",
-  "categories": [
-    "developer-tools",
-    "data-and-analytics"
-  ],
+  "category": "data-and-analytics",
   "tags": [
     "mcp",
     "web-search",
@@ -20,22 +17,24 @@
     "brand-intelligence",
     "read-only"
   ],
-  "documentationUrl": "https://github.com/replynodes/replynodes-mcp/blob/master/README.md",
-  "repositoryUrl": "https://github.com/replynodes/replynodes-mcp",
-  "homepageUrl": "https://replynodes.com",
-  "components": {
-    "mcpServers": {
-      "variables": [
-        {
-          "name": "REPLYNODES_API_KEY",
-          "description": "ReplyNodes API key obtained from the ReplyNodes auth claim flow at https://replynodes.com/auth.md. The plugin prompts for this in Cursor's Plugins configuration UI."
-        }
-      ],
-      "replynodes": {
-        "url": "https://mcp.replynodes.com/mcp",
-        "headers": {
-          "Authorization": "Bearer ${REPLYNODES_API_KEY}"
-        }
+  "repository": "https://github.com/replynodes/replynodes-mcp",
+  "homepage": "https://replynodes.com",
+  "variables": {
+    "type": "object",
+    "properties": {
+      "REPLYNODES_API_KEY": {
+        "type": "string",
+        "title": "ReplyNodes API key",
+        "description": "API key obtained from the ReplyNodes auth claim flow at https://replynodes.com/auth.md."
+      }
+    },
+    "required": ["REPLYNODES_API_KEY"]
+  },
+  "mcpServers": {
+    "replynodes": {
+      "url": "https://mcp.replynodes.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${REPLYNODES_API_KEY}"
       }
     }
   }
