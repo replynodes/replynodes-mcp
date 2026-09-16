@@ -216,7 +216,7 @@ plugins must be open source and are manually reviewed before listing
 | Channel | State | URL |
 | --- | --- | --- |
 | Official MCP Registry | Live listing | <https://registry.modelcontextprotocol.io/v0.1/servers/com.replynodes%2Fmcp/versions/latest> |
-| Smithery | Live listing | <https://smithery.ai/server/@replynodes/mcp> |
+| Smithery | Not listed (blocked) | Submission blocked by Smithery auth; see issue #12 |
 | Cursor plugin (in this repo) | Submit-ready | <https://github.com/replynodes/replynodes-mcp/tree/master/.cursor-plugin> |
 | Cursor deeplink | Verified install path | `cursor://anysphere.cursor-deeplink/mcp/install?name=replynodes&config=eyJtY3BTZXJ2ZXJzIjp7InJlcGx5bm9kZXMiOnsiaGVhZGVycyI6eyJBdXRob3JpemF0aW9uIjoiQmVhcmVyICR7UkVQTFlOT0RFU19BUElfS0VZfSJ9LCJ1cmwiOiJodHRwczovL21jcC5yZXBseW5vZGVzLmNvbS9tY3AifX19` |
 | Cursor Marketplace listing | Not listed yet | submit at <https://cursor.com/marketplace/publish> (owner action) |

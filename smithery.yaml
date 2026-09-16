@@ -10,3 +10,7 @@ startCommand:
         description: Your ReplyNodes credential (claim it at https://replynodes.com/auth.md)
   commandFunction: |
     config => ({ command: 'npx', args: ['-y', '@replynodes/mcp'], env: { REPLYNODES_API_KEY: config.apiKey } })
+
+deploy:
+  type: remote
+  url: https://mcp.replynodes.com/mcp
