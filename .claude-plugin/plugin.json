@@ -24,7 +24,7 @@
     "api_key": {
       "type": "string",
       "title": "ReplyNodes credential",
-      "description": "Claim one at https://replynodes.com/auth.md",
+      "description": "ReplyNodes API key (rn_test_* or rn_live_*) for headless/manual stdio use",
       "sensitive": true,
       "required": true
     }

@@ -25,7 +25,7 @@
       "REPLYNODES_API_KEY": {
         "type": "string",
         "title": "ReplyNodes API key",
-        "description": "API key obtained from the ReplyNodes auth claim flow at https://replynodes.com/auth.md."
+        "description": "ReplyNodes API key (rn_test_* or rn_live_*) for headless/manual use. Interactive clients should connect to the remote MCP server with native OAuth."
       }
     },
     "required": ["REPLYNODES_API_KEY"]

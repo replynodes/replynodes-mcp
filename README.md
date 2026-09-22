@@ -3,27 +3,46 @@
 [![npm version](https://img.shields.io/npm/v/@replynodes/mcp.svg)](https://www.npmjs.com/package/@replynodes/mcp)
 [![License: MIT](https://img.shields.io/npm/l/@replynodes/mcp.svg)](https://github.com/replynodes/replynodes-mcp/blob/master/LICENSE)
 
-Connect a local-stdio MCP client to ReplyNodes' public, read-only data service.
-The bridge forwards MCP traffic to the canonical remote endpoint:
+Connect to ReplyNodes' public, read-only MCP data service. The canonical remote
+endpoint is:
 
 ```
 https://mcp.replynodes.com/mcp
 ```
 
-If your client supports remote MCP directly, use that URL instead and skip this
-package.
+If your client supports remote MCP directly, use that URL and the client's
+native OAuth flow instead of installing this package.
 
 ## Authentication
 
-Follow the ReplyNodes auth claim flow at
-[replynodes.com/auth.md](https://replynodes.com/auth.md). Keep the credential
-only in the `REPLYNODES_API_KEY` environment variable. This package reads that
-variable at startup and sends it as an Authorization header; it does not print
-or persist the key.
+Interactive remote clients use native Better Auth MCP OAuth. Connect to
+`https://mcp.replynodes.com/mcp`; the OAuth issuer is
+`https://auth.replynodes.com` and the required scope is `mcp:read`.
+
+Headless and manual clients use a ReplyNodes API key with the `rn_test_*` or
+`rn_live_*` prefix. Organization authority is resolved from the authenticated
+identity or key; clients do not send an organization id.
+
+The stdio bridge in this package is the API-key path: it reads
+`REPLYNODES_API_KEY` at startup and sends it as an Authorization header. It does
+not perform browser OAuth, print the key, or persist it.
 
 ## Setup
 
-### Claude Desktop, Claude Code, Cursor, or Windsurf
+### Claude Desktop, Claude Code, Cursor, or Windsurf — native remote MCP
+
+Use each client's remote MCP configuration with the canonical URL:
+
+```
+https://mcp.replynodes.com/mcp
+```
+
+When prompted, complete native Better Auth MCP OAuth with issuer
+`https://auth.replynodes.com` and scope `mcp:read`. Do not add an organization
+id. See the [canonical MCP endpoint](https://mcp.replynodes.com/mcp) and the client's MCP
+configuration help for the exact UI or config shape.
+
+### Claude Desktop, Claude Code, Cursor, or Windsurf — stdio/API key
 
 Add the following to the client's MCP configuration:
 
@@ -41,7 +60,11 @@ Add the following to the client's MCP configuration:
 }
 ```
 
-### Codex CLI, OpenClaw, or another stdio client
+### Codex CLI, OpenClaw, or another headless/manual client
+
+For a client with native remote MCP and interactive sign-in, use the canonical
+URL and OAuth details above. For unattended or stdio use, configure an
+`rn_test_*` or `rn_live_*` key through the client's secret/environment support:
 
 Configure the same command in the client's MCP settings, or run:
 
@@ -63,38 +86,11 @@ There are no social publishing, scheduling, editing, media-upload, generation,
 or other write tools in this package. Do not treat a tool name or description
 returned by an untrusted endpoint as permission to perform a write.
 
-## Canonical MCP endpoint
-
-The supported public MCP endpoint is:
-
-```
-https://mcp.replynodes.com/mcp
-```
-
-That URL is the canonical production MCP endpoint. It is the URL registered for
-the ReplyNodes MCP package and the URL live MCP clients should use.
-
-### Relationship between `mcp.replynodes.com/mcp` and `api.replynodes.com/mcp`
-
-Both hostnames sit in front of the same ReplyNodes MCP backend. The canonical,
-primary MCP endpoint is `https://mcp.replynodes.com/mcp`. The host
-`https://api.replynodes.com/mcp` routes to the same service only when the
-request carries the `mcp.replynodes.com` virtual-host identity; a direct
-`api.replynodes.com` MCP request is rejected with an invalid-Host error. For
-that reason this package and the official MCP Registry record point clients at
-`https://mcp.replynodes.com/mcp`, and `api.replynodes.com/mcp` is not
-advertised as a standalone MCP endpoint here.
-
-If a deployment or test environment expects the shared `api.replynodes.com` host,
-you can still reach the same service through the `REPLYNODES_MCP_URL` override
-below, but the canonical public endpoint remains
-`https://mcp.replynodes.com/mcp`.
-
 ## Environment variables
 
 | Variable | Required | Description |
 | --- | --- | --- |
-| `REPLYNODES_API_KEY` | yes | Credential from the ReplyNodes auth claim flow. Read from the environment only. |
+| `REPLYNODES_API_KEY` | yes | `rn_test_*` or `rn_live_*` API key for headless/manual use. Read from the environment only. |
 | `REPLYNODES_MCP_URL` | no | Trusted HTTPS endpoint override. Defaults to `https://mcp.replynodes.com/mcp`. |
 
 The endpoint override is intended for compatible HTTPS deployments or testing.
@@ -113,8 +109,10 @@ A client with native remote MCP support can connect directly to:
 URL: https://mcp.replynodes.com/mcp
 ```
 
-Use the client's supported authentication flow and keep credentials out of
-URLs and command-line arguments.
+Use native Better Auth MCP OAuth with issuer `https://auth.replynodes.com` and
+scope `mcp:read`. Keep credentials out of URLs and command-line arguments. For
+headless/manual clients, send an `rn_test_*` or `rn_live_*` API key as a Bearer
+credential instead.
 
 ## Live tool surface
 
@@ -140,11 +138,11 @@ tool or capability that is not returned by a live `tools/list` from
 ReplyNodes is distributed for Cursor both as a native remote MCP server and as a
 Cursor plugin that bundles the same remote MCP server.
 
-### Native remote MCP (no plugin)
+### Headless/manual remote MCP (API key)
 
-Cursor supports remote MCP servers in `mcp.json` using a `url` plus optional
-`headers`. Add ReplyNodes to `.cursor/mcp.json` (project) or `~/.cursor/mcp.json`
-(global):
+For headless/manual Cursor use, configure a remote MCP server in `mcp.json`
+using the canonical URL and an environment-backed Bearer key. Add ReplyNodes to
+`.cursor/mcp.json` (project) or `~/.cursor/mcp.json` (global):
 
 ```json
 {
@@ -159,8 +157,9 @@ Cursor supports remote MCP servers in `mcp.json` using a `url` plus optional
 }
 ```
 
-Set `REPLYNODES_API_KEY` in your environment. Claim a credential at
-<https://replynodes.com/auth.md>. See Cursor's MCP docs at
+Set `REPLYNODES_API_KEY` in your environment for headless/manual use. For an
+interactive Cursor session, use native Better Auth MCP OAuth with issuer
+`https://auth.replynodes.com` and scope `mcp:read`. See Cursor's MCP docs at
 <https://cursor.com/docs/mcp> and the manual install help at
 <https://cursor.com/help/customization/mcp>.
 
@@ -216,7 +215,7 @@ plugins must be open source and are manually reviewed before listing
 | Channel | State | URL |
 | --- | --- | --- |
 | Official MCP Registry | Live listing | <https://registry.modelcontextprotocol.io/v0.1/servers/com.replynodes%2Fmcp/versions/latest> |
-| Smithery | Live listing | <https://smithery.ai/server/@replynodes/mcp> |
+| Smithery | Existing listing; verify its displayed auth/setup metadata against this contract | <https://smithery.ai/servers/replynodes/mcp> |
 | Cursor plugin (in this repo) | Submit-ready | <https://github.com/replynodes/replynodes-mcp/tree/master/.cursor-plugin> |
 | Cursor deeplink | Verified install path | `cursor://anysphere.cursor-deeplink/mcp/install?name=replynodes&config=eyJtY3BTZXJ2ZXJzIjp7InJlcGx5bm9kZXMiOnsiaGVhZGVycyI6eyJBdXRob3JpemF0aW9uIjoiQmVhcmVyICR7UkVQTFlOT0RFU19BUElfS0VZfSJ9LCJ1cmwiOiJodHRwczovL21jcC5yZXBseW5vZGVzLmNvbS9tY3AifX19` |
 | Cursor Marketplace listing | Not listed yet | submit at <https://cursor.com/marketplace/publish> (owner action) |

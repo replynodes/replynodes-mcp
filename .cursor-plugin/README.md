@@ -1,10 +1,12 @@
 # ReplyNodes MCP
 
-Web search, scraping, crawling, Reddit, YouTube, App Store, Hacker News, and brand-intelligence MCP server for Cursor. Connects to the canonical public endpoint `https://mcp.replynodes.com/mcp` and authenticates with a `Bearer` API key.
+Web search, scraping, crawling, Reddit, YouTube, App Store, Hacker News, and brand-intelligence MCP server for Cursor. Connects to the canonical public endpoint `https://mcp.replynodes.com/mcp`.
 
 ## Configuration
 
-Add a `REPLYNODES_API_KEY` variable in Cursor's Plugins configuration (the plugin prompts for it). Claim a key at [replynodes.com/auth.md](https://replynodes.com/auth.md). The plugin is transport-only: it does not add tools or publish anything; all available read-only tools are discovered via `tools/list` at runtime.
+For an interactive Cursor session, add the remote MCP URL and complete Cursor's native Better Auth MCP OAuth flow. The OAuth issuer is `https://auth.replynodes.com` and the required scope is `mcp:read`.
+
+For headless/manual use, configure a ReplyNodes `rn_test_*` or `rn_live_*` API key as a Bearer credential. The plugin is transport-only: it does not add tools or publish anything; all available read-only tools are discovered via `tools/list` at runtime.
 
 ## Endpoint
 

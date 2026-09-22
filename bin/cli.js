@@ -12,8 +12,8 @@ if (!apiKey) {
     [
       '[replynodes-mcp] Missing REPLYNODES_API_KEY.',
       '',
-      'Claim access at https://replynodes.com/auth.md,',
-      'then set the returned credential as REPLYNODES_API_KEY for this command.',
+      'Set an rn_test_* or rn_live_* ReplyNodes API key as REPLYNODES_API_KEY for this command.',
+      'Interactive browser OAuth is available when connecting directly to https://mcp.replynodes.com/mcp.',
     ].join('\n')
   );
   process.exit(1);

@@ -7,6 +7,6 @@ startCommand:
     properties:
       apiKey:
         type: string
-        description: Your ReplyNodes credential (claim it at https://replynodes.com/auth.md)
+        description: Your ReplyNodes API key (rn_test_* or rn_live_*) for headless/manual use. Organization authority is resolved from the key.
   commandFunction: |
     config => ({ command: 'npx', args: ['-y', '@replynodes/mcp'], env: { REPLYNODES_API_KEY: config.apiKey } })
