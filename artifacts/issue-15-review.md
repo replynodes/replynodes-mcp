@@ -19,7 +19,7 @@ to low-quality/spam directories.
 - Production MCP endpoint: https://mcp.replynodes.com/mcp
   - initialize: HTTP 200, protocol 2024-11-05, server replynodes-fetcher dev
   - tools/list: 51 tools
-  - api.replynodes.com/mcp returns HTTP 405 "Forbidden: invalid Host header" — NOT the MCP endpoint.
+  - [retired REST host]/mcp returns HTTP 405 "Forbidden: invalid Host header" — NOT the MCP endpoint.
     The canonical endpoint is mcp.replynodes.com. All distribution artifacts use mcp.replynodes.com.
 - Tool families (from live tools/list, 51 total):
   appstore 9, brand 4, googleplay 11, hackernews 9, reddit 6, web 1, webcontext 4, youtube 7
@@ -160,7 +160,7 @@ Do not touch. (Research context only: docs/eve-contextdev-research.md, untracked
 
 1. Endpoint drift fix: README.md + package.json + .claude-plugin/plugin.json all emphasize
    https://mcp.replynodes.com/mcp (the canonical production endpoint). No distribution artifact points at
-   the stale api.replynodes.com host.
+   the stale retired REST host.
 2. Cursor plugin package: .cursor-plugin/plugin.json + marketplace.json + README.md + assets/logo.svg,
    capability-oriented metadata based ONLY on the verified live 51-tool read-only surface, category
    "Data & Analytics", tags for capability discovery, remote HTTP MCP config with Bearer REPLYNODES_API_KEY

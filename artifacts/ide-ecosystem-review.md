@@ -47,7 +47,7 @@ installable both via the marketplace and as a deeplink, and shareable via mcp.js
 
 - Existing artifact: .claude-plugin/plugin.json + marketplace.json already in this repo. It is a valid
   Claude Code stdio plugin (npx -y @replynodes/mcp). It works but points at the stdio bridge and the
-  repo still defaults to the wrong host in README (api.replynodes.com).
+  repo still defaults to the wrong retired REST host in README (`[retired REST host]`).
 - Community marketplace submission (per docs): there is a community plugin marketplace; a repo can be added.
   The exact submission surface is owner-gated (Claude Team/Enterprise org + directory permissions) in the
   most credible current docs. We treat that as: prepare the plugin correctly (autonomous), and note the
