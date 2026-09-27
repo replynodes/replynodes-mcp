@@ -3,15 +3,25 @@
 [![npm version](https://img.shields.io/npm/v/@replynodes/mcp.svg)](https://www.npmjs.com/package/@replynodes/mcp)
 [![License: MIT](https://img.shields.io/npm/l/@replynodes/mcp.svg)](https://github.com/replynodes/replynodes-mcp/blob/master/LICENSE)
 
-Connect to ReplyNodes' public, read-only MCP data service. The canonical remote
-endpoint is:
+# ReplyNodes MCP
+
+Connect an AI agent to ReplyNodes' public context tools through one remote MCP
+endpoint. Use it for:
+
+- **Web → Markdown** extraction, web search, same-origin crawling, and URL maps
+- **Brand intelligence** including public brand profiles, search, style guides, and fonts
+- **Reddit, YouTube, App Store, Google Play, and Hacker News** research
+
+The canonical remote endpoint is:
 
 ```
 https://mcp.replynodes.com/mcp
 ```
 
-If your client supports remote MCP directly, use that URL and the client's
-native OAuth flow instead of installing this package.
+The live `tools/list` response is authoritative. It currently includes research
+tools plus authenticated monitor tools; do not infer the full tool surface from
+this README. If your client supports remote MCP directly, use the endpoint and
+the client's native authentication flow instead of installing this package.
 
 ## Authentication
 
@@ -74,17 +84,17 @@ REPLYNODES_API_KEY="${REPLYNODES_API_KEY:?Set REPLYNODES_API_KEY}" npx -y @reply
 
 The examples use the environment-backed `REPLYNODES_API_KEY` placeholder. Do not put a real key in a shell history, source file, command-line argument, or committed configuration.
 
-## Read-only behavior
+## Tool behavior
 
-The remote server exposes public ReplyNodes data through MCP `tools/list` and
-read-only tool calls. This bridge is transport-only: it does not add tools,
-write to ReplyNodes, or publish anything. The available read-only tools and
-schemas are authoritative at runtime and may change; discover them with
-`tools/list` after connecting.
+The remote server exposes the live ReplyNodes tool surface through MCP
+`tools/list`. Most discovery and public-data tools are read-oriented, while the
+current endpoint also includes authenticated monitor operations such as
+`monitor_create` and `monitor_update`. Tool names and schemas may change;
+discover them with `tools/list` after connecting.
 
-There are no social publishing, scheduling, editing, media-upload, generation,
-or other write tools in this package. Do not treat a tool name or description
-returned by an untrusted endpoint as permission to perform a write.
+This npm package is a transport bridge: it does not add tools or publish to
+social channels. Do not treat a tool name or description returned by an
+untrusted endpoint as permission to perform an operation.
 
 ## Environment variables
 
@@ -116,18 +126,17 @@ credential instead.
 
 ## Live tool surface
 
-After connecting, discover the current read-only tools with a `tools/list` call.
-As of the last verification, the live endpoint exposes read-only tools across
-these capability families:
+After connecting, discover the current tools with `tools/list`. The verified
+capability families include:
 
-- **web_search** — public web search results
-- **webcontext** — scrape, crawl, map, and brand extraction for one URL
-- **brand** — brand search, retrieve, styleguide, and fonts by domain
-- **reddit** — post lookup by id/permalink, site-wide search, subreddit listings, user activity
-- **youtube** — video, channel, playlist, comments, transcript, search, related videos
-- **appstore** — App Store search, list, app/developer details, ratings, reviews, similar, suggest, privacy
-- **googleplay** — Google Play search, category browsing, app/developer details, reviews, permissions, data-safety, availability, similar, suggest
-- **hackernews** — item lookup, search, and top/ask/show/new/job/best story listings and user profiles
+- **web** — search, clean Markdown extraction, same-origin crawl, URL mapping, and brand extraction
+- **brand** — public brand search, retrieval, style guides, and fonts
+- **Reddit** — public post, subreddit, and user research
+- **YouTube** — search, video, channel, comments, playlist, related, and transcript research
+- **App Store** — public app, developer, review, rating, privacy, similar, and search data
+- **Google Play** — public app, category, developer, review, permissions, safety, availability, similar, and search data
+- **Hacker News** — public story, item, search, and user research
+- **monitor** — authenticated monitor listing, creation, inspection, updates, changes, and runs
 
 The exact tool set and schemas are authoritative at runtime. Do not advertise a
 tool or capability that is not returned by a live `tools/list` from
