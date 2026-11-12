@@ -8,9 +8,18 @@
 Connect an AI agent to ReplyNodes' public context tools through one remote MCP
 endpoint. Use it for:
 
-- **Web → Markdown** extraction, web search, same-origin crawling, and URL maps
-- **Brand intelligence** including public brand profiles, search, style guides, and fonts
-- **Reddit, YouTube, App Store, Google Play, and Hacker News** research
+- **Company research by domain** (`anonymous_company_research`, `GET /v1/company-research?domain=`). Pass a bare domain: no scheme, port, path, or credentials.
+- **Competitor briefs** for 1-5 named domains (`anonymous_competitor_research`, `GET /v1/competitor-research?domain=&competitors=`). `competitors` is a comma-separated list of bare domains.
+- **Supporting reads**: pages as Markdown, brand profiles, and logos (`anonymous_markdown`, `anonymous_brand`, `brand_logo`, `brand_retrieve`)
+
+This server does not search for companies by market, category, or a
+natural-language list query (for example "top 10 SaaS companies in carbon
+accounting"). `brand_search` is a fuzzy brand-name or domain lookup (up to 10
+identity matches), not a market or category list.
+
+`GET /v1/company-research` and `GET /v1/competitor-research` work without a key:
+3 calls per caller per UTC day each. `tools/list` on the MCP endpoint also
+works without a key. MCP tool calls need a ReplyNodes API key or OAuth.
 
 The canonical remote endpoint is:
 
@@ -18,10 +27,12 @@ The canonical remote endpoint is:
 https://mcp.replynodes.com/mcp
 ```
 
-The live `tools/list` response is authoritative. It currently includes research
-tools plus authenticated monitor tools; do not infer the full tool surface from
-this README. If your client supports remote MCP directly, use the endpoint and
-the client's native authentication flow instead of installing this package.
+The live `tools/list` response is authoritative. It currently includes the
+company and competitor tools above, other public research tools (web, brand,
+Reddit, YouTube, App Store, Google Play, and Hacker News), and authenticated
+monitor tools. Do not infer the full tool surface from this README. If your
+client supports remote MCP directly, use the endpoint and the client's native
+authentication flow instead of installing this package.
 
 ## Authentication
 
@@ -129,14 +140,19 @@ credential instead.
 After connecting, discover the current tools with `tools/list`. The verified
 capability families include:
 
+- **company research** — `anonymous_company_research`: a dossier for one bare domain (`GET /v1/company-research`)
+- **competitor research** — `anonymous_competitor_research`: that domain plus 1-5 comma-separated competitor domains (`GET /v1/competitor-research`)
 - **web** — search, clean Markdown extraction, same-origin crawl, URL mapping, and brand extraction
-- **brand** — public brand search, retrieval, style guides, and fonts
+- **brand** — fuzzy name or domain lookup (`brand_search`, up to 10 identity matches), retrieval, logos, style guides, and fonts
 - **Reddit** — public post, subreddit, and user research
 - **YouTube** — search, video, channel, comments, playlist, related, and transcript research
 - **App Store** — public app, developer, review, rating, privacy, similar, and search data
 - **Google Play** — public app, category, developer, review, permissions, safety, availability, similar, and search data
 - **Hacker News** — public story, item, search, and user research
 - **monitor** — authenticated monitor listing, creation, inspection, updates, changes, and runs
+
+There is no tool that accepts a natural-language company list query such as
+"top 10 SaaS companies in carbon accounting."
 
 The exact tool set and schemas are authoritative at runtime. Do not advertise a
 tool or capability that is not returned by a live `tools/list` from
@@ -180,10 +196,17 @@ in this repository:
 - plugin manifest: <https://github.com/replynodes/replynodes-mcp/blob/master/.cursor-plugin/plugin.json>
 - logo: <https://github.com/replynodes/replynodes-mcp/blob/master/assets/logo.svg>
 
-The plugin uses the canonical production endpoint `https://mcp.replynodes.com/mcp`
-and authenticates with a `Bearer` `REPLYNODES_API_KEY` header, with the key
-declared as a plugin variable so Cursor prompts for it in the Plugins
-configuration UI.
+The plugin leads with company research by domain and competitor briefs for 1-5
+named domains, using the live tools `anonymous_company_research` and
+`anonymous_competitor_research`. Markdown, brand, and logo reads are supporting
+tools. It does not search for companies by market, category, or a
+natural-language list.
+
+It uses the canonical production endpoint `https://mcp.replynodes.com/mcp` and
+sends `Authorization: Bearer ${REPLYNODES_API_KEY}`. Cursor prompts for that
+variable under Plugins → Configure. MCP tool calls need that API key or OAuth;
+this plugin uses the API-key path. A free key includes 500 credits; paid plans
+start at $19. Installing the plugin is free (MIT).
 
 #### Install with a Cursor deeplink
 
@@ -223,8 +246,8 @@ plugins must be open source and are manually reviewed before listing
 
 | Channel | State | URL |
 | --- | --- | --- |
-| Official MCP Registry | Live listing | <https://registry.modelcontextprotocol.io/v0.1/servers/com.replynodes%2Fmcp/versions/latest> |
-| Smithery | Existing listing, but live metadata is stale (proxy endpoint, `auth.md`, and query `apiKey`); update is external/owner-gated | <https://smithery.ai/servers/replynodes/mcp> |
+| Official MCP Registry | Live listing (`com.replynodes/mcp` 1.0.3). The published description is still the older web-search copy; the company-research description update (recommended 1.0.4) is not in this repo change and has not been published | <https://registry.modelcontextprotocol.io/v0.1/servers/com.replynodes%2Fmcp/versions/latest> |
+| Smithery | Not listed. <https://smithery.ai/servers/replynodes/mcp> returns HTTP 404 | — |
 | Cursor plugin (in this repo) | Submit-ready | <https://github.com/replynodes/replynodes-mcp/tree/master/.cursor-plugin> |
 | Cursor deeplink | Verified install path | `cursor://anysphere.cursor-deeplink/mcp/install?name=replynodes&config=eyJtY3BTZXJ2ZXJzIjp7InJlcGx5bm9kZXMiOnsiaGVhZGVycyI6eyJBdXRob3JpemF0aW9uIjoiQmVhcmVyICR7UkVQTFlOT0RFU19BUElfS0VZfSJ9LCJ1cmwiOiJodHRwczovL21jcC5yZXBseW5vZGVzLmNvbS9tY3AifX19` |
 | Cursor Marketplace listing | Not listed yet | submit at <https://cursor.com/marketplace/publish> (owner action) |
