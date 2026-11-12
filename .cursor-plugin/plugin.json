@@ -1,31 +1,31 @@
 {
   "name": "replynodes",
-  "version": "0.1.4",
-  "description": "Read-only web search, scraping, crawling, Reddit, YouTube, App Store, Hacker News, and brand-intelligence MCP server for Cursor. Connect to the canonical public endpoint, authenticate with your claimed API key, and call tools via Cursor's Tools panel.",
-  "readme": "README.md",
-  "icon": "assets/logo.svg",
-  "category": "data-and-analytics",
-  "tags": [
+  "version": "0.1.5",
+  "description": "Research a company by domain and get competitor briefs for 1-5 named domains, via the ReplyNodes MCP server. Also converts pages to Markdown and pulls brand and logo data. Connects to https://mcp.replynodes.com/mcp. MCP tool calls require a ReplyNodes API key (free key includes 500 credits; plans from $19). Does not search for companies by market or category.",
+  "author": {
+    "name": "ReplyNodes"
+  },
+  "homepage": "https://replynodes.com",
+  "repository": "https://github.com/replynodes/replynodes-mcp",
+  "license": "MIT",
+  "keywords": [
     "mcp",
-    "web-search",
-    "scraping",
-    "crawl",
-    "reddit",
-    "youtube",
-    "app-store",
-    "hacker-news",
-    "brand-intelligence",
+    "company-research",
+    "competitor-research",
+    "brand",
+    "logo",
+    "markdown",
+    "web-context",
     "read-only"
   ],
-  "repository": "https://github.com/replynodes/replynodes-mcp",
-  "homepage": "https://replynodes.com",
+  "logo": "assets/logo.svg",
   "variables": {
     "type": "object",
     "properties": {
       "REPLYNODES_API_KEY": {
         "type": "string",
         "title": "ReplyNodes API key",
-        "description": "ReplyNodes API key (rn_test_* or rn_live_*) for headless/manual use. Interactive clients should connect to the remote MCP server with native OAuth."
+        "description": "ReplyNodes API key (rn_test_* or rn_live_*). MCP tool calls require this key. A free key includes 500 credits; paid plans start at $19. Get a key at https://replynodes.com/auth.md."
       }
     },
     "required": ["REPLYNODES_API_KEY"]
